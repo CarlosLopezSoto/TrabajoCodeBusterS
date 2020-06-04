@@ -1,13 +1,55 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Use a package of configuration called an orb.
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
+jobs:
+    build-and-test:
+        docker:
+            - image: circleci/node:10.21.0
+        steps:
+            - checkout
+            - restore_cache:
+                keys:
+                    - v1-dependencies-{{ checksum "./functions/package.json" }}
+                    - v1-dependencies-
+            - run: 
+                working_directory: ~/project/functions
+                command: npm install
+            - save_cache:
+                key: v1-dependencies-{{ checksum "./functions/package.json" }}
+                paths:
+                    - ./project/functions/node_modules
+            - run: 
+                working_directory: ~/project/functions
+                command: npm test
+            - persist_to_workspace:
+                root: ~/project
+                paths:
+                    - ./
+
+    deploy-job:
+        docker:
+            - image: circleci/node:10.21.0
+        steps:
+            - attach_workspace:
+                at: ~/project
+            - run:
+                working_directory: ~/project/functions
+                name: Deploy to Firebase
+                command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN             
+
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
-    jobs:
-      - welcome/run
+    ci-cd-workflow:
+        jobs:
+            - build-and-test
+            - hold:
+                type: approval
+                requires:
+                    - build-and-test
+                filters:
+                    branches:
+                        only: master
+            - deploy-job:
+                requires:
+                    - hold
+                filters:
+                    branches:
+                        only: master
+                

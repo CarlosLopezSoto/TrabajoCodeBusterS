@@ -4,7 +4,9 @@ const express = require("express");
 
 const app = express();
 
-const currentVersion = "v0.5.0";
+// Esta es la versión que se debe actualizar al realizar cambios
+// (ya sabemos que esto no debería ser así...)
+const currentVersion = "v0.5.1";
 
 const Router = require("./router");
 

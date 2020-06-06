@@ -15,14 +15,15 @@ function Res(){
 
 	this.json = (json)=>{
 		return json;
+    }
+    this.redirect = (text)=>{
+		return text;
 	}
 }
 
 describe("router.js",()=>{
 
-
     describe("configureRoutes()",()=>{
-
 
         it("expects routes to start with '/' ", ()=>{
 
@@ -38,11 +39,10 @@ describe("router.js",()=>{
                     return method({},res);
                 }
             };
-            
 
             let router = new Router(app,"");
             let appObject  = router.configureRoutes();
-            for(let i=0;i<appObject.routes.length;i++){
+            for(let i=0; i<appObject.routes.length; i++){
                 expect(app.routes[i][0]).to.equal("/");
             }
 

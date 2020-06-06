@@ -8,7 +8,12 @@ class Router {
     configureRoutes(){
         this.app.get("/version",(req,res) => {
 
-            res.status(200).send(this.currentVersion);
+            try {
+                res.status(200).send(this.currentVersion);
+            } catch (error) {
+                error => res.status(400).json('Error: '+ error);
+            }
+            
         
         });
 

@@ -4,8 +4,6 @@ const express = require("express");
 
 const app = express();
 
-const fs = require("fs");
-
 const currentVersion = "v0.5.0";
 
 const Router = require("./router");

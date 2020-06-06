@@ -13,13 +13,17 @@ class Router {
             } catch (error) {
                 error => res.status(400).json('Error: '+ error);
             }
-            
+        });
+        
+        this.app.get("/",(req,res) => {
+
+            res.redirect("/version");
         
         });
 
         return this.app;
     }
-
+    
 
 }
 

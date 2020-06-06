@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  slack: circleci/slack@3.4.2
 jobs:
     build-and-test:
         docker:
@@ -23,6 +25,10 @@ jobs:
                 root: ~/project
                 paths:
                     - ./
+            - slack/notify:
+                channel: C014S6X3X9U
+                color: '#42e2f4'
+                message: Trabajo build-and-test finalizado
 
     deploy-job:
         docker:

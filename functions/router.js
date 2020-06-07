@@ -6,7 +6,7 @@ class Router {
 
 
     configureRoutes(){
-        this.app.get("/version",(req,res) => {
+        this.app.get("/api/version",(req,res) => {
 
             try {
                 res.status(200).send(this.currentVersion);

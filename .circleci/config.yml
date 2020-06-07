@@ -27,13 +27,15 @@ jobs:
                     - v1-react-dependencies-{{ checksum "./package.json" }}
                     - v1-react-dependencies-
             - run: 
+                name: Installing React dependencies
                 command: npm install
-
             - save_cache:
+                name: Caching React dependencies
                 key: v1-react-dependencies-{{ checksum "./package.json" }}
                 paths:
                     - ./project/node_modules
-            - run: 
+            - run:
+                name: Build React App
                 command: npm run build
             - persist_to_workspace:
                 root: ~/project
@@ -51,7 +53,7 @@ jobs:
             - attach_workspace:
                 at: ~/project
             - run:
-                name: Deploy to Firebase
+                name: Deploy Hosting and Functions to Firebase
                 command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN             
 
 workflows:

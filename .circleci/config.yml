@@ -21,6 +21,22 @@ jobs:
             - run: 
                 working_directory: ~/project/functions
                 command: npm test
+            #comienza la parte de la app en react
+            - restore_cache:
+                keys:
+                    - v1-react-dependencies-{{ checksum "./package.json" }}
+                    - v1-react-dependencies-
+            - run: 
+                name: Installing React dependencies
+                command: npm install
+            - save_cache:
+                name: Caching React dependencies
+                key: v1-react-dependencies-{{ checksum "./package.json" }}
+                paths:
+                    - ./project/node_modules
+            - run:
+                name: Build React App
+                command: npm run build
             - persist_to_workspace:
                 root: ~/project
                 paths:
@@ -37,8 +53,7 @@ jobs:
             - attach_workspace:
                 at: ~/project
             - run:
-                working_directory: ~/project/functions
-                name: Deploy to Firebase
+                name: Deploy Hosting and Functions to Firebase
                 command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN             
 
 workflows:

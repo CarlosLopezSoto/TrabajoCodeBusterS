@@ -9,7 +9,7 @@ function App() {
         <h1>Code Busters</h1>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Best Grupo 20202
+          Best Grupo 2020
         </p>
         <a
           className="App-link"

@@ -44,7 +44,7 @@ jobs:
             - slack/notify:
                 channel: C014S6X3X9U
                 color: '#42e2f4'
-                message: Trabajo build-and-test finalizado
+                message: Trabajo BUILD-AND-TEST finalizado
 
     deploy-job:
         docker:
@@ -58,19 +58,34 @@ jobs:
             - slack/notify:
                 channel: C014S6X3X9U
                 color: '#3358FF'
-                message: Trabajo deploy finalizado           
-
+                message: Trabajo DEPLOY finalizado   
+        
+    hold-notify:
+        docker:
+            - image: circleci/node:10.21.0
+        steps:
+            - slack/approval:
+                channel: C014S6X3X9U
+                color: '#FFF633'
+                message: Trabajo en HOLD, se necesita APROBACIÓN para continuar
+            
 workflows:
     ci-cd-workflow:
         jobs:
             - build-and-test
-            - hold:
-                type: approval
+            - hold-notify:
                 requires:
                     - build-and-test
                 filters:
                     branches:
                         only: master
+            - hold:
+                type: approval
+                requires:
+                    - hold-notify
+                filters:
+                    branches:
+                        only: master                
             - deploy-job:
                 requires:
                     - hold

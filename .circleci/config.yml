@@ -41,10 +41,16 @@ jobs:
                 root: ~/project
                 paths:
                     - ./
-            - slack/notify:
+            #- slack/notify:
+             #   channel: C014S6X3X9U
+              #  color: '#42e2f4'
+              #  message: Trabajo build-and-test finalizado
+              #supuesta mente tendria que tirar el mensaje    
+            - run: exit 0
+            - slack/status:
                 channel: C014S6X3X9U
-                color: '#42e2f4'
-                message: Trabajo build-and-test finalizado
+                success_message:  Trabajo build-and-test finalizado v2
+                failure_message:  Trabajo build-and-test tiene ERROR v2 
 
     deploy-job:
         docker:
@@ -54,7 +60,11 @@ jobs:
                 at: ~/project
             - run:
                 name: Deploy Hosting and Functions to Firebase
-                command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN             
+                command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+          #  - slack/notify:
+          #      channel: C014S6X3X9U
+          #      color: '#42e2f4'
+          #      message: Trabajo build-and-test finalizado             
 
 workflows:
     ci-cd-workflow:

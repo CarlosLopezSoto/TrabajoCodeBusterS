@@ -45,11 +45,6 @@ jobs:
                 channel: C014S6X3X9U
                 color: '#42e2f4'
                 message: Trabajo build-and-test finalizado
-            - slack/approval:
-                channel: C014S6X3X9U
-                color: '#E933FF'
-                message: Trabajo en hold, se necesita aprobación para continuar
-                
 
     deploy-job:
         docker:
@@ -59,7 +54,11 @@ jobs:
                 at: ~/project
             - run:
                 name: Deploy Hosting and Functions to Firebase
-                command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN             
+                command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+            - slack/notify:
+                channel: C014S6X3X9U
+                color: '#3358FF'
+                message: Trabajo deploy finalizado           
 
 workflows:
     ci-cd-workflow:

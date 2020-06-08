@@ -68,10 +68,7 @@ jobs:
                 channel: C014S6X3X9U
                 color: '#FFF633'
                 message: Trabajo en HOLD, se necesita APROBACIÓN para continuar
-            - hold:
-                type: approval
-                
-
+            
 workflows:
     ci-cd-workflow:
         jobs:
@@ -82,6 +79,13 @@ workflows:
                 filters:
                     branches:
                         only: master
+            - hold:
+                type: approval
+                requires:
+                    - hold-notify
+                filters:
+                    branches:
+                        only: master                
             - deploy-job:
                 requires:
                     - hold

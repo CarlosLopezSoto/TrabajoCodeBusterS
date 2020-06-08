@@ -45,6 +45,11 @@ jobs:
                 channel: C014S6X3X9U
                 color: '#42e2f4'
                 message: Trabajo build-and-test finalizado
+            - slack/approval:
+                channel: C014S6X3X9U
+                color: '#E933FF'
+                message: Trabajo en hold, se necesita aprobación para continuar
+                
 
     deploy-job:
         docker:

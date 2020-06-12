@@ -8,7 +8,7 @@ const app = express();
 // (ya sabemos que esto no debería ser así...)
 const currentVersion = "v0.5.1";
 
-const Router = require("./router");
+const Router = require("./router");;
 
 const router = new Router(app,currentVersion);
 

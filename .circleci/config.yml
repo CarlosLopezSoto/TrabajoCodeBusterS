@@ -21,7 +21,7 @@ jobs:
             - run:
                 name: Code Inspection - node server
                 working_directory: ~/project/functions
-                command: ./node_modules/eslint/bin/eslint.js .
+                command: npm run lint
             - run:
                 name: Test node server 
                 working_directory: ~/project/functions

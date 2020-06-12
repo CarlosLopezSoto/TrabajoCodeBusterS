@@ -3,12 +3,12 @@
     // Required for certain syntax usages
     "ecmaVersion": 2017
   },
+  "root": true,
   "plugins": [
     "promise"
   ],
   "extends": "eslint:recommended",
   "rules": {
-    "import/prefer-default-export": "off",
     // Removed rule "disallow the use of console" from recommended eslint rules
     "no-console": "off",
 

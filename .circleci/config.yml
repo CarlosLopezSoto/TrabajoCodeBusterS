@@ -23,7 +23,7 @@ jobs:
                 working_directory: ~/project/functions
                 command: npm run lint
             - run:
-                name: Test node server 
+                name: Test and code coverage - node server 
                 working_directory: ~/project/functions
                 command: npm test
             #comienza la parte de la app en react

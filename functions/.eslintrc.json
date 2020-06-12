@@ -3,6 +3,7 @@
     // Required for certain syntax usages
     "ecmaVersion": 2017
   },
+  "root": true,
   "plugins": [
     "promise"
   ],

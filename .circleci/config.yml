@@ -18,7 +18,12 @@ jobs:
                 key: v1-dependencies-{{ checksum "./functions/package.json" }}
                 paths:
                     - ./project/functions/node_modules
-            - run: 
+            - run:
+                name: Code Inspection - node server
+                working_directory: ~/project/functions
+                command: npm run lint
+            - run:
+                name: Test node server 
                 working_directory: ~/project/functions
                 command: npm test
             #comienza la parte de la app en react

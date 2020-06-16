@@ -55,10 +55,6 @@ jobs:
                 color: '#42e2f4'
                 message: Trabajo BUILD-AND-TEST finalizado
 
-
-
-
-
     deploy-job:
         docker:
             - image: circleci/node:10.21.0

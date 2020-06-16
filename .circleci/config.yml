@@ -46,10 +46,18 @@ jobs:
                 root: ~/project
                 paths:
                     - ./
-            - slack/notify:
+            #- slack/notify:
+             #   channel: C014S6X3X9U
+              #  color: '#42e2f4'
+                  # message: Trabajo BUILD-AND-TEST finalizado
+            -slack/status:
                 channel: C014S6X3X9U
-                color: '#42e2f4'
-                message: Trabajo BUILD-AND-TEST finalizado
+                fail_only: true
+                failure_message: Trabajo BUILD-AND-TEST ha fallado!
+                success_message: Trabajo BUILD-AND-TEST exitoso!
+
+
+
 
     deploy-job:
         docker:

@@ -50,7 +50,7 @@ jobs:
              #   channel: C014S6X3X9U
               #  color: '#42e2f4'
                   # message: Trabajo BUILD-AND-TEST finalizado
-            -slack/status:
+            - slack/status:
                 channel: C014S6X3X9U
                 fail_only: true
                 failure_message: Trabajo BUILD-AND-TEST ha fallado!

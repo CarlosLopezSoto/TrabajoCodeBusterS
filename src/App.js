@@ -11,7 +11,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Best Grupo 2020
-        </p>
+        </p>;
         <a
           className="App-link"
           href="https://reactjs.org"

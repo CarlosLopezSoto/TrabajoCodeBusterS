@@ -15,6 +15,11 @@ class Router {
             }
         });
 
+        // PARA LA DEMO: 
+        this.app.get("/api/nueva",(req,res) => {
+            res.status(200).send('Nueva Ruta')
+        });
+
         return this.app;
     }
     

@@ -17,9 +17,9 @@ class Router {
 
         // PARA LA DEMO: 
         // DURANTE LA DEMO 
-        //this.app.get("/api/nueva",(req,res) => {
+        this.app.get("/api/nueva",(req,res) => {
         // ANTES DE ARRANCAR 
-        this.app.get("api/nueva",(req,res) => {
+        // this.app.get("api/nueva",(req,res) => {
             res.status(200).send('Nueva Ruta')
         });
 

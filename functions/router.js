@@ -20,7 +20,7 @@ class Router {
             res.status(200).send('Nueva Ruta')
         });
 
-        return this.app;;
+        return this.app;
     }
     
 
